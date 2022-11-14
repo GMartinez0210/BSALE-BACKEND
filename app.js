@@ -40,6 +40,17 @@ app.get("/api/product-category", function(req, res) {
     filter.productOrCategory(req, res)
 }) 
 
+app.get("/*", function(req, res) {
+    const api = {
+        products: "/api/products",
+        product: "/api/product?name=${param}",
+        product: "/api/categories",
+        category: "/api/category?name=${param}",
+        filter: "/api/product-category?name=${param}"
+    }
+    res.json(api)
+})
+
 /* This is a way to set the port for the server. The first part is setting the port to the environment
 variable PORT or 4000. The second part is listening to the port. */
 const port = process.env.PORT || 4000
